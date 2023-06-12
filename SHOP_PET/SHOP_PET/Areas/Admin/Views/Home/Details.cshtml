@@ -1,0 +1,29 @@
+﻿@model SHOP_PET.Models.Pet
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="col-sm-12 col=md-12">
+    <div class="caption">
+        <p>Mã Loại: @Html.DisplayFor(model => model.maloai)</p>
+        <p>Tên pet: @Html.DisplayFor(model => model.tenpet)</p>
+
+        <img src="/@Html.DisplayFor(model => model.hinhpet)" alt="thumbnail"  width="250" />
+
+        <p>Giá bán: @Html.DisplayFor(model => model.giaban)</p>
+        <p>Ngày cập nhật: @Html.DisplayFor(model => model.ngaycapnhat)</p>
+        <p>Trọng lượng: @Html.DisplayFor(model => model.trongluong)</p>
+        <p>Số lượng tổng: @Html.DisplayFor(model => model.soluongtong)</p>
+        @*<p>
+                @Html.ActionLink("Back", "Index", "", new { @class = "btn btn-info" })
+            </p>*@
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.mapet }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

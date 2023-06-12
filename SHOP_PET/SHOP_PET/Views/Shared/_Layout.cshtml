@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header ">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("SHOP_PET", "Home", "Shop", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Thú Cưng", "Home", "Shop")</li>*@
+                    @*<li>@Html.ActionLink("Login", "DangNhap", "Users")</li>*@
+                    @*<li>
+                    @using (Html.BeginForm("Home", "Shop", FormMethod.Get))
+                    {
+                        <p>Loại Pet:@Html.DropDownList("price", (SelectList)ViewBag.PriceList, "Chọn ", new { @onchange = "this.form.submit();" })</p>
+                    }
+                    </li>*@
+
+                    <li>@Html.ActionLink("Contact", "Contact", "Shop")</li>
+                    <li>@Html.Partial("~/Views/GioHang/GioHangPartial.cshtml")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["TaiKhoan"] != null && Session["TaiKhoan"] != "")
+                    {
+                        SHOP_PET.Models.KhachHang khach = (SHOP_PET.Models.KhachHang)Session["TaiKhoan"];
+                        <li style="color:white">Xin Chào @khach.hoten </li> <br />
+
+                        @Html.ActionLink("Đăng Xuất", "DangXuat", "Users")
+                        
+
+                    }
+                    else
+                    {
+                        <li style="display:inline;"><a id="btnDangNhap" class="glyphicon glyphicon-user" href="@Url.Action("DangNhap","Users")">  Login</a></li>
+                        <li style="display:inline;"><a id="btnDangKy" class="glyphicon glyphicon-log-in" href="@Url.Action("DangKy","Users")">  SingUp</a></li>
+
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("upload", required: false)
+</body>
+</html>

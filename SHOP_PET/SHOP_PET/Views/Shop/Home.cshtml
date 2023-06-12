@@ -1,0 +1,179 @@
+﻿
+@model PagedList.IPagedList<SHOP_PET.Models.Pet>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .home {
+        display: flex;
+        align-items: center;
+        min-height: 40vh;
+        background: url(/Content/images/Silder-17.jpg) no-repeat;
+        background-size: cover;
+        background-position: 70%;
+    /*    margin-top: 76px;*/
+    }
+
+        .home .content {
+            max-width: 50rem;
+        }
+
+            .home .content h3 {
+                font-size: 6rem;
+                color: #333;
+            }
+
+            .home .content span {
+                font-size: 3.5rem;
+                color: #4388e8;
+                padding: 2rem 0;
+                line-height: 1.5;
+            }
+
+            .home .content p {
+                font-size: 1.5rem;
+                color: #000;
+                padding: 2rem 0;
+                line-height: 1.5;
+            }
+
+    .h2 {
+        text-align: center;
+    }
+
+    .products .box-container .box .image {
+        position: relative;
+        text-align: center;
+        padding-top: 2rem;
+        overflow: hidden;
+    }
+
+        .products .box-container .box .image img {
+            height: 25rem;
+        }
+
+    .products .box-container .box:hover .image img {
+        transform: scale(1.1);
+        /* anh */
+    }
+
+    .products .box-container .box .image .icons {
+         position: absolute; 
+        bottom: -7rem;
+        left: 0;
+        right: 0;
+        display: flex;
+    }
+
+    .products .box-container .box:hover .image .icons {
+        bottom: 0;
+    }
+
+    .products .box-container .box .image .icons a {
+        height: 5rem;
+        line-height: 5rem;
+        font-size: 2rem;
+        width: 50%;
+        background: #4388e8;
+        color: #fff;
+    }
+
+    .products .box-container .box .image .icons .cart-btn {
+        border-left: .1rem solid #fff7;
+        border-right: .1rem solid #fff7;
+        width: 100%;
+    }
+
+    .products .box-container .box .image .icons a:hover {
+        background: #333;
+    }
+</style>
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>fresh flowers</h3>
+        <span> natural & beautiful flowers </span>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae laborum ut minus corrupti dolorum dolore
+            assumenda iste voluptate dolorem pariatur.
+        </p>
+        <a href="#" class="btn">shop now</a>
+    </div>
+
+</section>
+<h2>TRANG THÚ CƯNG</h2>
+
+<header>
+    <div class="navbar">
+        @using (Html.BeginForm())
+        {<div class="Search">
+                @Html.TextBox("SearchString") <input type="submit" value="Tìm kiếm" class="btn btn-success" />
+            </div>
+        }
+        <h4>
+            @using (Html.BeginForm("Home", "Shop", FormMethod.Get))
+            {
+                <p>Loại Pet:@Html.DropDownList("price", (SelectList)ViewBag.PriceList, "Chọn ", new { @onchange = "this.form.submit();" })</p>
+            }
+        </h4>
+        @*<h4>
+            @using (Html.BeginForm("Home", "Shop", FormMethod.Get))
+            {
+                <p>Loại Pet:@Html.DropDownList("price", (SelectList)ViewBag.PriceList, "Chọn ", new { @onchange = "this.form.submit();" })</p>
+            }
+        </h4>*@
+
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel panel-heading">
+                            @item.tenpet
+                        </div>
+                        <div class="panel-body image">
+                            <p><strong>Giá: </strong>@item.giaban</p>
+                            <p><strong>Ngày cập nhật: </strong>@item.ngaycapnhat</p>
+                            <p><strong>Số lượng tồn: </strong>@item.soluongtong</p>
+                            <p><img src="/@item.hinhpet" alt="hinh thumnail" style="display: block; width: 150px; height: 212px; margin: 20px auto;"></p>
+                        </div>
+                        <div class="panel-footer clearfix">
+                            <div class="pull-right">
+                                <div class="DatMua">
+                                    <a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.mapet, @strURL = Request.Url.ToString() })">Đặt mua</a>
+                                    @Html.ActionLink("Detail", "Details", new { id = item.mapet }, new { @class = "btn btn-default" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
+                @using (Html.BeginForm("Home", "Shop", FormMethod.Get))
+                {
+                    <p>
+                        Kích thước trang:@Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+                    </p>
+                }
+            </div>
+            <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6 text-right">
+                Trang: @(Model.PageCount<Model.PageNumber? 0:Model.PageNumber)/@Model.PageCount
+            </div>
+        </div>
+        @Html.PagedListPager(Model, page => Url.Action("Home", new
+        {
+            page,
+            size = ViewBag.currentSize
+        }))
+
+    </div>
+</header>

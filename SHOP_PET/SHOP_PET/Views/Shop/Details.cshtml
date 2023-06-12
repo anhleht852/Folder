@@ -1,0 +1,33 @@
+﻿@model SHOP_PET.Models.Pet
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CHI TIẾT</h2>
+
+<div class="col-sm-12 col=md-12">
+    <div class="caption col-lg-5">
+        <p>Mã Loại: @Html.DisplayFor(model => model.maloai)</p>
+        <p>Tên pet: @Html.DisplayFor(model => model.tenpet)</p>
+       
+     
+        
+        <p>Giá bán: @Html.DisplayFor(model => model.giaban)</p>
+        <p>Ngày cập nhật: @Html.DisplayFor(model => model.ngaycapnhat)</p>
+        <p>Trọng lượng: @Html.DisplayFor(model => model.trongluong)</p>
+        <p>Số lượng tổng: @Html.DisplayFor(model => model.soluongtong)</p>
+        @*<p>
+            @Html.ActionLink("Back", "Index", "", new { @class = "btn btn-info" })
+        </p>*@
+    </div>
+    <div class="col-lg-7">
+        <img src="/@Html.DisplayFor(model => model.hinhpet)" alt="thumbnail" style="width:250px" />
+    </div>
+</div>
+
+<p>
+
+    @Html.ActionLink("Back to List", "Home", new { @class = "btn btn-info" })
+</p>

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SHOP_PET.Models.Pet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SHOP_PET</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.mapet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.maloai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tenpet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hinhpet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.giaban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaycapnhat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trongluong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soluongtong)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mapet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.maloai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tenpet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hinhpet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giaban)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngaycapnhat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.trongluong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soluongtong)
+        </td>
+        <td>
+
+            @Html.ActionLink("Details", "Details", new { id = item.mapet })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SHOP_PET.Models.Giohang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GIỎ HÀNG</h2>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.tenpet)</th>
+        <th>@Html.DisplayNameFor(model => model.hinhpet)</th>
+        <th>@Html.DisplayNameFor(model => model.giaban)</th>
+        <th>@Html.DisplayNameFor(model => model.iSoluong)</th>
+        <th>@Html.DisplayNameFor(model => model.dThanhtien)</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.tenpet)</td>
+            <td><img src="/@item.hinhpet" width="180" /></td>
+            @using (Html.BeginForm("CapnhatGiohang", "Giohang", new { @id = item.mapet }))
+            {
+                <td>@String.Format("{0:0,0}", item.giaban) VNĐ</td>
+                <td>@item.iSoluong</td>
+                @*<td><input type="number" min="1" name="txtSoLg" value="@item.iSoluong"</td>*@
+                <td>@Html.DisplayFor(modelItem => item.dThanhtien)</td>
+                <td><a href="@Url.Action("Detail", "Pet", new {id=item.mapet})">Chi tiết</a> | @Html.ActionLink("Xóa", "XoaGiohang", new { @id = item.mapet })</td>
+
+            }
+        </tr>
+    }
+<tr style="font-weight:bold; text-align:left; color:red">
+    <td colspan="2">Số loại Pet: @ViewBag.Tongsoluongsanpham</td>
+    <td colspan="2">Số lượng Pet: @ViewBag.Tongsoluong</td>
+    <td colspan="4">Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien) VNĐ</td>
+    @*<td colspan="4">Tổng tiền: @String.Format("{0:0,0}", ViewBag.Tongtien)VNĐ</td>*@
+</tr>
+    <tr style="font-weight: bold; text-align: right; color: blue"></tr>
+    @*<td colspan="5">
+        @Html.ActionLink("Xóa giỏ hàng", "XoaTatCaGioHang")
+    </td>*@
+    <tr style="font-weight:bold; color:yellow; text-align: right"></tr>
+    <td colspan="5">@Html.ActionLink("Đặt hàng", "DatHang", "Giohang")</td>
+</table>

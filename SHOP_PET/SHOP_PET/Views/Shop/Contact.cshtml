@@ -1,0 +1,173 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>    .contact .row {
+        display: flex;
+        flex-wrap: wrap-reverse;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+        .contact .row form {
+            flex: 1 1 40rem;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+            border: .1rem solid rgba(0, 0, 0, .1);
+            background: #fff;
+            border-radius: .5rem;
+        }
+
+        .contact .row .image {
+            flex: 1 1 40rem;
+        }
+
+            .contact .row .image img {
+                width: 100%;
+            }
+
+        .contact .row form .box {
+            padding: 1rem;
+            font-size: 1.7rem;
+            color: #333;
+            text-transform: none;
+            border: .1rem solid rgba(0, 0, 0, .1);
+            border-radius: .5rem;
+            margin: .7rem 0;
+            width: 100%;
+        }
+
+            .contact .row form .box:focus {
+                border-color: #4388e8;
+            }
+
+        .contact .row form textarea {
+            height: 15rem;
+            resize: none;
+        }
+
+    .footer .box-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+        .footer .box-container .box {
+            flex: 1 1 25rem;
+        }
+
+            .footer .box-container .box h3 {
+                color: #333;
+                font-size: 2.5rem;
+                padding: 1rem 0;
+            }
+
+            .footer .box-container .box a {
+                display: block;
+                color: #666;
+                font-size: 1.5rem;
+                padding: 1rem 0;
+            }
+
+                .footer .box-container .box a:hover {
+                    color: #4388e8;
+                    text-decoration: underline;
+                }
+
+            .footer .box-container .box img {
+                margin-top: 1rem;
+            }
+
+    .footer .credit {
+        text-align: center;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+        padding-top: 2.5rem;
+        font-size: 2rem;
+        color: #333;
+        border-top: .1rem solid rgba(0, 0, 0, .1);
+        padding-bottom: 9rem;
+    }
+
+        .footer .credit span {
+            color: #4388e8;
+        }
+</style>
+
+
+
+
+<body>
+
+    <!-- header section starts  -->
+    <!-- header section ends -->
+    <!-- contact section starts  -->
+
+    <section class="contact" id="contact">
+
+        <h1 class="heading"> <span> contact </span> us </h1>
+
+        <div class="row">
+
+            <form action="">
+                <input type="text" placeholder="name" class="box">
+                <input type="email" placeholder="email" class="box">
+                <input type="number" placeholder="number" class="box">
+                <textarea name="" class="box" placeholder="message" id="" cols="30" rows="10"></textarea>
+                @Html.ActionLink("send message", "Home")
+            </form>
+
+            <div class="image">
+                <img src="~/Content/images/contact-img.svg" alt="">
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- contact section ends -->
+    <!-- footer section starts  -->
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#">home</a>
+                <a href="#">about</a>
+                <a href="#">prod   cts</a>
+                <a href="#">review</a>
+                <a href="#">contact</a>
+            </div>
+
+            <div class="box">
+                <h3>extra links</h3>
+                <a href="#">my account</a>
+                <a href="#">my order</a>
+                <a href="#">my favorite</a>
+            </div>
+
+            <div class="box">
+                <h3>locations</h3>
+                <a href="#">india</a>
+                <a href="#">USA</a>
+                <a href="#">japan</a>
+                <a href="#">france</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#">+123-456-7890</a>
+                <a href="#">example@gmail.com</a>
+                <a href="#">mumbai, india - 400104</a>
+                <img src="images/payment.png" alt="">
+            </div>
+
+        </div>
+
+        <div class="credit"> created by <span> mr. web designer </span></div>
+
+    </section>
